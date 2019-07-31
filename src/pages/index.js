@@ -1,16 +1,53 @@
-import React from "react"
+import React, { Component } from "react"
+import Link from "gatsby-link"
+import PropTypes from "prop-types"
+import Layout from "../layouts"
+import { graphql } from 'gatsby'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+class PostsTemplate extends Component {
+    render() {
+        const data = this.props.data
 
+        return(
+            <Layout>
+                <h1>Posts</h1>
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-  </Layout>
-)
+                {data.allWordpressPost.edges.map(({node}) => (
+                    <div key={node.slug} className={"post"} style={{ marginBottom: 50 }}>
+                        <Link to={node.slug}>
+                            <h3>{node.title}</h3>
+                        </Link>
 
-export default IndexPage
+                        <div className={"post-content"} dangerouslySetInnerHTML={{__html: node.excerpt}} />
+
+                        {node.date}
+                    </div>
+                ))}
+
+            </Layout>
+        )
+    }
+}
+
+PostsTemplate.propTypes = {
+    data: PropTypes.object.isRequired,
+    edges: PropTypes.array,
+}
+
+export default PostsTemplate
+
+export const pageQuery = graphql`
+    query postsQuery{
+        allWordpressPost{
+            edges{
+                node{
+                    id
+                    title
+                    excerpt
+                    slug
+                    date(formatString: "MMMM DD, YYYY")
+                }
+            }
+        }
+    }
+`

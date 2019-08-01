@@ -22,20 +22,6 @@ const Layout = ({ children }) => (
             title
           }
 		}
-		
-		allWordpressWpApiMenusMenusItems(filter: {name: {eq: "Main menu"}}) {
-            edges{
-                node{
-                    id
-                    name
-                    items{
-                        title
-                        url
-                        object_slug
-                    }
-                }
-            }
-        }
       }
     `}
     render={data => (
@@ -49,7 +35,7 @@ const Layout = ({ children }) => (
             paddingTop: 0,
           }}
         >
-		<MainMenu menu={data.allWordpressWpApiMenusMenusItems} />
+		<MainMenu  />
           <main>{children}</main>
           <footer>
             © {new Date().getFullYear()}, Built with

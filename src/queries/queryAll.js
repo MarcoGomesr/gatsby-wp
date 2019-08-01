@@ -20,7 +20,23 @@ module.exports = `
                     slug
                     status
                     template
-                    format
+					format
+					title
+					date(formatString: "MMMM DD, YYYY")
+					excerpt
+					featured_media {
+						localFile {
+						  childImageSharp {
+							id
+							resolutions {
+							  width
+							  height
+							  src
+							  srcSet            
+							}
+						  }
+						}
+					  }
                 }
             }
         }

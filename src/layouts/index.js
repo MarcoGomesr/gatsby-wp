@@ -11,6 +11,7 @@ import { StaticQuery, graphql } from "gatsby"
 
 import Header from "../components/Header"
 import "./index.scss"
+import MainMenu from "../components/Menu/MainMenu.js"
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -20,6 +21,20 @@ const Layout = ({ children }) => (
           siteMetadata {
             title
           }
+		}
+		
+		allWordpressWpApiMenusMenusItems(filter: {name: {eq: "Main menu"}}) {
+            edges{
+                node{
+                    id
+                    name
+                    items{
+                        title
+                        url
+                        object_slug
+                    }
+                }
+            }
         }
       }
     `}
@@ -34,6 +49,7 @@ const Layout = ({ children }) => (
             paddingTop: 0,
           }}
         >
+		<MainMenu menu={data.allWordpressWpApiMenusMenusItems} />
           <main>{children}</main>
           <footer>
             © {new Date().getFullYear()}, Built with
@@ -51,3 +67,4 @@ Layout.propTypes = {
 }
 
 export default Layout
+

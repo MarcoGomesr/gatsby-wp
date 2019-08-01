@@ -27,16 +27,17 @@ export default () => (
 
 	render={ data => (
 		<>
-			<h1>Main Menu</h1>
-			<ul>
-				{ data.allWordpressWpApiMenusMenusItems.edges[0].node.items.map((item) =>
-					<li key={item.object_slug}>
-						<Link to={item.url}>
-							{item.title}
-						</Link>
-					</li>
-				)}
-			</ul>
+			<nav>
+				<ul>
+					{ data.allWordpressWpApiMenusMenusItems.edges[0].node.items.map((item) =>
+						<li key={item.object_slug}>
+							<Link to={item.url}>
+								{item.title}
+							</Link>
+						</li>
+					)}
+				</ul>
+			</nav>
 		</>
 	)}
  />

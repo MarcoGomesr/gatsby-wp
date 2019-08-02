@@ -11,22 +11,6 @@ const NavLink = props => {
     }
 };
 
-const checkifImageExist = (node) => {
-
-	let content = '';
-
-	if ( node.featured_media  ){
-		if ( node.featured_media.localFile.childImageSharp.resolutions  ){
-			content = <div> <Img resolutions={node.featured_media.localFile.childImageSharp.resolutions} /></div>
-		}
-	}
-
-	return content
-
-	
-	
-}
-
 
 
 const IndexPage = ({ data, pageContext }) => {
@@ -45,7 +29,11 @@ const IndexPage = ({ data, pageContext }) => {
                         <h3>{node.title}</h3>
                     </Link>
 
-					{ checkifImageExist(node) }
+					{node.featured_media && node.featured_media.localFile.childImageSharp.resolutions &&
+                        <div>
+                            <Img resolutions={node.featured_media.localFile.childImageSharp.resolutions} />
+                        </div>
+                    }
 
                     <div className={"post-content"} dangerouslySetInnerHTML={{__html: node.excerpt}} />
 
@@ -53,10 +41,10 @@ const IndexPage = ({ data, pageContext }) => {
                 </div>
 			))}
             <div className="previousLink">
-                <NavLink test={first} url={"/posts/" + previousUrl} text="Go to Previous Page" />
+                <NavLink test={first} url={"/blog/" + previousUrl} text="Go to Previous Page" />
             </div>
             <div className="nextLink">
-                <NavLink test={last} url={"/posts/" + nextUrl} text="Go to Next Page" />
+                <NavLink test={last} url={"/blog/" + nextUrl} text="Go to Next Page" />
             </div>
         </Layout>
     );

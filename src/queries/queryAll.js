@@ -24,18 +24,7 @@ module.exports = `
 					title
 					date(formatString: "MMMM DD, YYYY")
 					excerpt
-					featured_media {
-						localFile {
-							childImageSharp {
-								fixed(width: 300, height:300) {
-									src
-									width
-									srcSet
-									height
-								}
-							  }
-						}
-					  }
+					
                 }
             }
         }

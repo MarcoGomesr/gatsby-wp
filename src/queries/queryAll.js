@@ -26,15 +26,14 @@ module.exports = `
 					excerpt
 					featured_media {
 						localFile {
-						  childImageSharp {
-							id
-							resolutions {
-							  width
-							  height
-							  src
-							  srcSet            
-							}
-						  }
+							childImageSharp {
+								fixed(width: 300, height:300) {
+									src
+									width
+									srcSet
+									height
+								}
+							  }
 						}
 					  }
                 }

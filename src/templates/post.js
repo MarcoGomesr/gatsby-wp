@@ -6,7 +6,7 @@ import Img from "gatsby-image"
 class PostTemplate extends Component {
     render() {
 		const post = this.props.data.wordpressPost
-		const resolutions = ( post.featured_media ) ? post.featured_media.localFile.childImageSharp.resolutions : null
+		const fixed = ( post.featured_media ) ? post.featured_media.localFile.childImageSharp.fixed : null
 		
 		let facebook = ''
         let twitter = ''
@@ -28,8 +28,8 @@ class PostTemplate extends Component {
 			<Layout>
 				<div>
 					<h1 dangerouslySetInnerHTML={{ __html: post.title }} />
-					{ resolutions && 
-						<Img resolutions ={resolutions} alt="" />
+					{ fixed && 
+						<Img fixed ={fixed} alt="" />
 					}
 					
 					
@@ -62,13 +62,12 @@ export const pageQuery = graphql`
 			featured_media {
 				localFile {
 					childImageSharp {
-						fixed {
-						  width
-						  height
-						  src
-						  srcSet
+						fixed( width: 300, height:300 ) {
+							src
+							width						
+							height
 						}
-					}
+					  }
 				}
 			  }
         }

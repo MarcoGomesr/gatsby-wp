@@ -29,9 +29,9 @@ const IndexPage = ({ data, pageContext }) => {
                         <h3>{node.title}</h3>
                     </Link>
 
-					{node.featured_media && node.featured_media.localFile.childImageSharp.resolutions &&
+					{node.featured_media && node.featured_media.localFile.childImageSharp.fixed &&
                         <div>
-                            <Img resolutions={node.featured_media.localFile.childImageSharp.resolutions} />
+                            <Img fixed={node.featured_media.localFile.childImageSharp.fixed} />
                         </div>
                     }
 

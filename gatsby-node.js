@@ -19,7 +19,7 @@ exports.createPages = ({ graphql, actions  }) => {
 
                 // Pages detail
                 const pages = result.data.allWordpressPage.edges
-
+                console.log("pages", pages)
                 pages.forEach(edge => {
                     createPage({
                         path: `/${edge.node.slug}/`,

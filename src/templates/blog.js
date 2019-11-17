@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "gatsby-link";
-import Layout from '../layouts';
+import Layout from '../components/Layout/layout.js';
 import Img from 'gatsby-image'
 
 const NavLink = props => {

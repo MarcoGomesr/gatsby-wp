@@ -7,7 +7,7 @@ export default () => (
 	query={graphql`
 
 	query LayoutQuery {
-		allWordpressWpApiMenusMenusItems(filter: {name: {eq: "Main menu"}}) {
+		allWordpressMenusMenusItems(filter: {name: {eq: "Main menu"}}) {
 		  edges {
 			node {
 			  id
@@ -15,7 +15,6 @@ export default () => (
 			  items {
 				title
 				url
-				object_slug
 			  }
 			}
 		  }
@@ -29,8 +28,8 @@ export default () => (
 		<>
 			<nav>
 				<ul>
-					{ data.allWordpressWpApiMenusMenusItems.edges[0].node.items.map((item) =>
-						<li key={item.object_slug}>
+					{ data.allWordpressMenusMenusItems.edges[0].node.items.map((item) =>
+						<li key={item.url}>
 							<Link to={item.url}>
 								{item.title}
 							</Link>

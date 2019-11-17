@@ -1,42 +1,30 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Wordpress`,
+    title: `Gatsby Default Starter`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@marcogomesr`,
+    author: `@gatsbyjs`,
   },
   plugins: [
-	`gatsby-plugin-react-helmet`,
-	`gatsby-plugin-sass`,
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sass`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
       },
-	},
-
-	{
-		resolve: `gatsby-source-wordpress`,
-		options: {
-		  /*
-		   * The base URL of the Wordpress site without the trailingslash and the protocol. This is required.
-		   * Example : 'dev-gatbsyjswp.pantheonsite.io' or 'www.example-site.com'
-		   */
-		  exludeRoutes: ['/wp/v2/users/**'],
-		  baseUrl: `wordpress-api.dev.node-production.com`,
-		  // The protocol. This can be http or https.
-		  protocol: `http`,
-		  // Indicates whether the site is hosted on wordpress.com.
-		  // If false, then the assumption is made that the site is self hosted.
-		  // If true, then the plugin will source its content on wordpress.com using the JSON REST API V2.
-		  // If your site is hosted on wordpress.org, then set this to false.
-		  hostingWPCOM: false,
-		  // If useACF is true, then the source plugin will try to import the Wordpress ACF Plugin contents.
-		  // This feature is untested for sites hosted on Wordpress.com
-		  useACF: true,
-		},
-	  },
-	
+    },
+    {
+      resolve: "gatsby-source-wordpress",
+      options: {
+        exludeRoutes: ['/wp/v2/users/**', '/wp-json/jetpack/v4/**'],
+        baseUrl: "https://35.177.207.68",
+        protocol: "http",
+        hostingWPCOM: false,
+        useAFC: true,
+        verbose: true
+      }
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -49,17 +37,8 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
-	  }
-	},
-	`gatsby-plugin-catch-links`,
-	  {
-		  resolve: 'gatsby-source-filesystem',
-		  options: {
-			  path: `${__dirname}/src/pages`,
-			  name: 'pages'
-		  }
-	  },
-	  'gatsby-transformer-remark'
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
